@@ -7,28 +7,28 @@
     <title>My Website</title>
     <link rel="stylesheet" href="./styles.css" />
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
-  </head>
 
-  <!-- CoreUI -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.1.2/dist/css/coreui.min.css"
-    rel="stylesheet"
-    integrity="sha384-lBISJVJ49zh34fnUuAaSAyuYzQ2ioGvhm4As4Z1JFde0kVpaC1FFWD3f9adpZrdD"
-    crossorigin="anonymous"
-  />
-  <script
-    src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.1.2/dist/js/coreui.bundle.min.js"
-    integrity="sha384-yoEOGIfJg9mO8eOS9dgSYBXwb2hCCE+AMiJYavhAofzm8AoyVE241kjON695K1v5"
-    crossorigin="anonymous"
-  ></script>
-  <!-- fontawesome -->
-  <link
-    rel="stylesheet"
-    href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-  />
-  <!-- Web3.js -->
-  <script src="https://cdn.jsdelivr.net/npm/web3@4.12.1/dist/web3.min.js
-  "></script>
+    <!-- CoreUI -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.1.2/dist/css/coreui.min.css"
+      rel="stylesheet"
+      integrity="sha384-lBISJVJ49zh34fnUuAaSAyuYzQ2ioGvhm4As4Z1JFde0kVpaC1FFWD3f9adpZrdD"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.1.2/dist/js/coreui.bundle.min.js"
+      integrity="sha384-yoEOGIfJg9mO8eOS9dgSYBXwb2hCCE+AMiJYavhAofzm8AoyVE241kjON695K1v5"
+      crossorigin="anonymous"
+    ></script>
+    <!-- fontawesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
+    <!-- Web3.js -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@4.12.1/dist/web3.min.js
+"></script>
+  </head>
 
   <body>
     <div class="d-flex">
@@ -136,90 +136,5 @@
       </div>
     </div>
   </body>
+  <script src="web.js"></script>
 </html>
-
-<script>
-  // const var
-  const connectButton = document.getElementById("connectButton");
-  const disconnectButton = document.getElementById("disconnectButton");
-  const accountDisplay = document.getElementById("account");
-
-  // enable CoreUI popover
-  const popoverTriggerList = document.querySelectorAll(
-    '[data-coreui-toggle="popover"]'
-  );
-  const popoverList = [...popoverTriggerList].map(
-    (popoverTriggerEl) => new coreui.Popover(popoverTriggerEl)
-  );
-
-  //  check if metamask installed when page is loaded
-  window.addEventListener("load", async () => {
-    if (typeof window.ethereum !== "undefined") {
-      console.log("MetaMask extension found");
-      const web3 = new Web3(window.ethereum);
-      checkConnection(web3);
-    } else {
-      alert("Please install MetaMask");
-    }
-  });
-
-  // check metamask connected or not
-  function checkConnection(web3) {
-    web3.eth.getAccounts().then((accounts) => {
-      if (accounts.length > 0) {
-        // connected
-        console.log("MetaMask is connected when load:", accounts[0]);
-        connectButton.style.display = "none";
-        disconnectButton.style.display = "block";
-      } else {
-        // not connected
-        console.log("MetaMask is not connected  when load");
-        connectButton.style.display = "block";
-        disconnectButton.style.display = "none";
-      }
-    });
-  }
-
-  // connect metamask
-  connectButton.addEventListener("click", async () => {
-    try {
-      const accounts = await ethereum.request({
-        method: "eth_requestAccounts",
-      });
-      // success
-      // change button
-      connectButton.style.display = "none";
-      disconnectButton.style.display = "block";
-    } catch (error) {
-      // fail
-      console.error("User denied account access", error);
-    }
-  });
-
-  // delete cookeies to disconnect metamask
-  function deleteAllCookies() {
-    const cookies = document.cookie.split(";");
-
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i];
-      const eqPos = cookie.indexOf("=");
-      const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-      document.cookie =
-        name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
-    }
-  }
-
-  // disconnect metamask
-  disconnectButton.addEventListener("click", () => {
-    // delete all page storage to disconnect metamask
-    localStorage.removeItem("walletAddress");
-    sessionStorage.removeItem("walletAddress");
-    deleteAllCookies();
-
-    window.location.reload();
-
-    // change button
-    disconnectButton.style.display = "none";
-    connectButton.style.display = "block";
-  });
-</script>
