@@ -15,28 +15,33 @@ const popoverList = [...popoverTriggerList].map(
 window.addEventListener("load", async () => {
   if (typeof window.ethereum !== "undefined") {
     console.log("MetaMask extension found");
-    const web3 = new Web3(window.ethereum);
-    checkConnection(web3);
+    window.web3 = new Web3(window.ethereum);
+    checkConnection();
   } else {
     alert("Please install MetaMask");
   }
 });
 
 // check metamask connected or not
-function checkConnection(web3) {
-  web3.eth.getAccounts().then((accounts) => {
-    if (accounts.length > 0) {
-      // connected
-      console.log("MetaMask is connected when load:", accounts[0]);
-      connectButton.style.display = "none";
-      disconnectButton.style.display = "block";
-    } else {
-      // not connected
-      console.log("MetaMask is not connected  when load");
-      connectButton.style.display = "block";
-      disconnectButton.style.display = "none";
-    }
-  });
+async function checkConnection() {
+  web3 = window.web3;
+  accounts = await web3.eth.getAccounts();
+  if (accounts.length > 0) {
+    // connected
+    console.log("MetaMask is connected when load:", accounts[0]);
+    // change button
+    connectButton.style.display = "none";
+    disconnectButton.style.display = "block";
+    // get info
+    var balance = await web3.eth.getBalance(accounts[0]);
+    console.log("ETH balance:", web3.utils.fromWei(balance, "ether"));
+  } else {
+    // not connected
+    console.log("MetaMask is not connected  when load");
+    // change button
+    connectButton.style.display = "block";
+    disconnectButton.style.display = "none";
+  }
 }
 
 // connect metamask
@@ -49,6 +54,11 @@ connectButton.addEventListener("click", async () => {
     // change button
     connectButton.style.display = "none";
     disconnectButton.style.display = "block";
+    // get info
+    web3 = window.web3;
+    console.log("Connect account:", accounts[0]);
+    var balance = await web3.eth.getBalance(accounts[0]);
+    console.log("ETH balance:", web3.utils.fromWei(balance, "ether"));
   } catch (error) {
     // fail
     console.error("User denied account access", error);
