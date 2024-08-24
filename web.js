@@ -2,6 +2,8 @@
 const connectButton = document.getElementById("connectButton");
 const disconnectButton = document.getElementById("disconnectButton");
 const accountDisplay = document.getElementById("account");
+const successToast = document.getElementById("successToast");
+const failToast = document.getElementById("failToast");
 
 // enable CoreUI popover
 const popoverTriggerList = document.querySelectorAll(
@@ -51,6 +53,9 @@ connectButton.addEventListener("click", async () => {
       method: "eth_requestAccounts",
     });
     // success
+    // show success toast
+    const successToastCoreUI = coreui.Toast.getOrCreateInstance(successToast);
+    successToastCoreUI.show();
     // change button
     connectButton.style.display = "none";
     disconnectButton.style.display = "block";
@@ -61,7 +66,10 @@ connectButton.addEventListener("click", async () => {
     console.log("ETH balance:", web3.utils.fromWei(balance, "ether"));
   } catch (error) {
     // fail
-    console.error("User denied account access", error);
+    // show fail toast
+    const failToastCoreUI = coreui.Toast.getOrCreateInstance(failToast);
+    failToastCoreUI.show();
+    console.error("MetaMask connection rejected", error);
   }
 });
 

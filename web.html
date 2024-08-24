@@ -136,6 +136,48 @@
         </nav>
       </div>
     </div>
+
+    <!-- Toast: MetaMask connect successfully-->
+    <div class="toast-container position-fixed bottom-0 start-0 p-3">
+      <div
+        id="successToast"
+        class="toast align-items-center text-bg-success border-0"
+      >
+        <div class="d-flex">
+          <div class="toast-body">
+            <i class="fas fa-check-circle icon-spacing"></i>
+            Account(s) updated successfully!
+          </div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-coreui-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast: MetaMask connection rejected-->
+    <div class="toast-container position-fixed bottom-0 start-0 p-3">
+      <div
+        id="failToast"
+        class="toast align-items-center text-bg-danger border-0"
+      >
+        <div class="d-flex">
+          <div class="toast-body">
+            <i class="fas fa-exclamation-circle icon-spacing"></i>
+            Wallet connection rejected.
+          </div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-coreui-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
   </body>
   <script src="web.js"></script>
 </html>
