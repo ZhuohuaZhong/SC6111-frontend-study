@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-coreui-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My Website</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+  </head>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.1.2/dist/css/coreui.min.css"
+    rel="stylesheet"
+    integrity="sha384-lBISJVJ49zh34fnUuAaSAyuYzQ2ioGvhm4As4Z1JFde0kVpaC1FFWD3f9adpZrdD"
+    crossorigin="anonymous"
+  />
+  <script
+    src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.1.2/dist/js/coreui.bundle.min.js"
+    integrity="sha384-yoEOGIfJg9mO8eOS9dgSYBXwb2hCCE+AMiJYavhAofzm8AoyVE241kjON695K1v5"
+    crossorigin="anonymous"
+  ></script>
+
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+  />
+
+  <body>
+    <div class="d-flex">
+      <!-- SIDEBAR -->
+      <div class="sidebar border-end d-flex flex-column" style="height: 100vh">
+        <!-- sidebar header -->
+        <div class="sidebar-header">
+          <div style="margin: 20px auto">
+            <img
+              src="https://portfolio.metamask.io/assets/portfolio-logo-dark-34c7653e.svg"
+            />
+          </div>
+        </div>
+
+        <!-- element -->
+        <ul class="sidebar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <div class="icon"></div>
+              Overview
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">
+              <i class="nav-icon cil-speedometer"></i> With badge
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="nav-icon cil-cloud-download"></i> Tokens
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="nav-icon cil-cloud-download"></i> NFTs
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="nav-icon cil-layers"></i> Games
+            </a>
+          </li>
+        </ul>
+
+        <!-- sidebar footer -->
+        <div class="sidebar-footer border-top d-flex">
+          <a class="nav-link" href="#">
+            <i class="nav-icon cil-layers"></i> Terms of Use
+          </a>
+        </div>
+      </div>
+
+      <!-- NAVBAR -->
+      <div class="flex-grow-1">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+            <!-- brand (navbar right side) -->
+            <strong class="navbar-brand">Swap</strong>
+
+            <!-- navbar right side -->
+            <div class="d-flex">
+              <form role="search">
+                <input
+                  class="form-control me-2"
+                  type="search"
+                  placeholder="Search for a token..."
+                  aria-label="Search"
+                />
+              </form>
+
+              <!-- gas and remind button -->
+              <button type="button" class="btn btn-ghost-secondary">
+                <i class="fas fa-gas-pump"></i>
+              </button>
+              <button
+                type="button"
+                class="btn btn-ghost-secondary"
+                data-coreui-container="body"
+                data-coreui-toggle="popover"
+                data-coreui-placement="bottom"
+                data-coreui-content="Bottom popover"
+              >
+                <i class="far fa-bell"></i>
+              </button>
+
+              <!-- Wallet -->
+              <button type="button" class="btn btn-info rounded-pill">
+                Connect wallet
+              </button>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  const popoverTriggerList = document.querySelectorAll(
+    '[data-coreui-toggle="popover"]'
+  );
+  const popoverList = [...popoverTriggerList].map(
+    (popoverTriggerEl) => new coreui.Popover(popoverTriggerEl)
+  );
+</script>
