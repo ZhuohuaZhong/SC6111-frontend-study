@@ -96,8 +96,17 @@ async function checkConnection() {
   }
 }
 
+// connect buttoms
+connectButton.addEventListener("click", () => {
+  connectMetaMask();
+});
+
+connectButtonInCard.addEventListener("click", () => {
+  connectMetaMask();
+});
+
 // connect metamask
-connectButton.addEventListener("click", async () => {
+async function connectMetaMask() {
   try {
     const accounts = await ethereum.request({
       method: "eth_requestAccounts",
@@ -120,7 +129,7 @@ connectButton.addEventListener("click", async () => {
     failToastCoreUI.show();
     console.error("MetaMask connection rejected", error);
   }
-});
+}
 
 // disconnect metamask
 disconnectButton.addEventListener("click", () => {
