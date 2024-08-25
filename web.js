@@ -14,6 +14,9 @@ const swapFromSelect = document.getElementById("swapFromSelect");
 const swapFromInput = document.getElementById("swapFromInput");
 const swapToSelect = document.getElementById("swapToSelect");
 const swapButtom = document.getElementById("swapButtom");
+// other buttoms in card
+const connectButtonInCard = document.getElementById("connectButtonInCard");
+const getQuotesButtonInCard = document.getElementById("getQuotesButtonInCard");
 
 // enable tooltip
 const tooltipTriggerList = document.querySelectorAll(
@@ -48,8 +51,29 @@ function showAccountInfo(account, balance) {
   balanceInfo.innerText =
     "ETH balance: " + web3.utils.fromWei(balance, "ether");
   balanceInfo.style.display = "block";
+}
+
+function switchToConnectedLayout(account, balance) {
+  showAccountInfo(account, balance);
+  // navbar buttoms
+  connectButton.style.display = "none";
+  disconnectButton.style.display = "block";
+  // card buttoms
+  connectButtonInCard.style.display = "none";
+  getQuotesButtonInCard.style.display = "block";
   // hide network warn
   networkWarn.style.display = "none";
+}
+
+function switchToDisonnectedLayout() {
+  // navbar buttoms
+  connectButton.style.display = "block";
+  disconnectButton.style.display = "none";
+  // card buttoms
+  connectButtonInCard.style.display = "block";
+  getQuotesButtonInCard.style.display = "none";
+  // show network warn
+  networkWarn.style.display = "block";
 }
 
 // check metamask connected or not
@@ -59,19 +83,16 @@ async function checkConnection() {
   if (accounts.length > 0) {
     // connected
     console.log("MetaMask is connected when load:", accounts[0]);
-    // change button
-    connectButton.style.display = "none";
-    disconnectButton.style.display = "block";
     // get info
     var balance = await web3.eth.getBalance(accounts[0]);
     console.log("ETH balance:", web3.utils.fromWei(balance, "ether"));
-    showAccountInfo(accounts[0], balance);
+    // switch layout
+    switchToConnectedLayout(accounts[0], balance);
   } else {
     // not connected
     console.log("MetaMask is not connected  when load");
-    // change button
-    connectButton.style.display = "block";
-    disconnectButton.style.display = "none";
+    // switch layout
+    switchToDisonnectedLayout();
   }
 }
 
@@ -85,15 +106,13 @@ connectButton.addEventListener("click", async () => {
     // show success toast
     const successToastCoreUI = coreui.Toast.getOrCreateInstance(successToast);
     successToastCoreUI.show();
-    // change button
-    connectButton.style.display = "none";
-    disconnectButton.style.display = "block";
     // get info
     web3 = window.web3;
     console.log("Connect account:", accounts[0]);
     var balance = await web3.eth.getBalance(accounts[0]);
     console.log("ETH balance:", web3.utils.fromWei(balance, "ether"));
-    showAccountInfo(accounts[0], balance);
+    // switch layout
+    switchToConnectedLayout(accounts[0], balance);
   } catch (error) {
     // fail
     // show fail toast
@@ -101,6 +120,18 @@ connectButton.addEventListener("click", async () => {
     failToastCoreUI.show();
     console.error("MetaMask connection rejected", error);
   }
+});
+
+// disconnect metamask
+disconnectButton.addEventListener("click", () => {
+  // delete all page storage to disconnect metamask
+  localStorage.removeItem("walletAddress");
+  sessionStorage.removeItem("walletAddress");
+  deleteAllCookies();
+
+  window.location.reload();
+
+  switchToDisonnectedLayout();
 });
 
 // delete cookeies to disconnect metamask
@@ -114,20 +145,6 @@ function deleteAllCookies() {
     document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
   }
 }
-
-// disconnect metamask
-disconnectButton.addEventListener("click", () => {
-  // delete all page storage to disconnect metamask
-  localStorage.removeItem("walletAddress");
-  sessionStorage.removeItem("walletAddress");
-  deleteAllCookies();
-
-  window.location.reload();
-
-  // change button
-  disconnectButton.style.display = "none";
-  connectButton.style.display = "block";
-});
 
 // swap buttom logic
 swapButtom.addEventListener("click", () => {
