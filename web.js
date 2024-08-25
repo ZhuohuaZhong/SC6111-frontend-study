@@ -9,11 +9,24 @@ const accountInfoTitle = document.getElementById("accountInfoTitle");
 const accountInfo = document.getElementById("accountInfo");
 const balanceInfo = document.getElementById("balanceInfo");
 const networkWarn = document.getElementById("networkWarn");
-// for swap
+// for swap in card
 const swapFromSelect = document.getElementById("swapFromSelect");
 const swapFromInput = document.getElementById("swapFromInput");
 const swapToSelect = document.getElementById("swapToSelect");
 const swapButtom = document.getElementById("swapButtom");
+// advanced options
+const advancedOptionsButtomUp = document.getElementById(
+  "advancedOptionsButtomUp"
+);
+const advancedOptionsButtomDown = document.getElementById(
+  "advancedOptionsButtomDown"
+);
+const advancedOptionsButtomGroup = document.getElementById(
+  "advancedOptionsButtomGroup"
+);
+const slippageButtom1 = document.getElementById("slippageButtom1");
+const slippageButtom2 = document.getElementById("slippageButtom2");
+const slippageButtom3 = document.getElementById("slippageButtom3");
 // other buttoms in card
 const connectButtonInCard = document.getElementById("connectButtonInCard");
 const getQuotesButtonInCard = document.getElementById("getQuotesButtonInCard");
@@ -164,4 +177,35 @@ swapButtom.addEventListener("click", () => {
   swapFromSelect.value = swapToValue;
   swapToSelect.value = tmp;
   swapFromInput.value = null;
+});
+
+// advanced options
+advancedOptionsButtomUp.addEventListener("click", () => {
+  advancedOptionsButtomDown.style.display = "block";
+  advancedOptionsButtomUp.style.display = "none";
+  advancedOptionsButtomGroup.style.display = "none";
+});
+
+advancedOptionsButtomDown.addEventListener("click", () => {
+  advancedOptionsButtomDown.style.display = "none";
+  advancedOptionsButtomUp.style.display = "block";
+  advancedOptionsButtomGroup.style.display = "block";
+});
+
+slippageButtom1.addEventListener("click", () => {
+  slippageButtom1.classList.add("active");
+  slippageButtom2.classList.remove("active");
+  slippageButtom3.classList.remove("active");
+});
+
+slippageButtom2.addEventListener("click", () => {
+  slippageButtom1.classList.remove("active");
+  slippageButtom2.classList.add("active");
+  slippageButtom3.classList.remove("active");
+});
+
+slippageButtom3.addEventListener("click", () => {
+  slippageButtom1.classList.remove("active");
+  slippageButtom2.classList.remove("active");
+  slippageButtom3.classList.add("active");
 });

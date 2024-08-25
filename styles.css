@@ -38,3 +38,9 @@
   border-radius: 15px !important;
   background-color: #26272b !important;
 }
+
+.custom-advanced-options-button {
+  --cui-btn-border-color: #35373b !important;
+  --cui-btn-color: var(--cui-white) !important;
+  margin: auto 5px !important;
+}

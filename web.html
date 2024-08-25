@@ -274,11 +274,106 @@
               <option value="USDC">USDC</option>
             </select>
 
-            <!-- buttoms in card -->
+            <!-- advanced options -->
+            <!-- text -->
+            <div style="text-align: center; margin-top: 30px">
+              <a
+                id="advancedOptionsButtomDown"
+                class="nav-link"
+                href="#"
+                style="cursor: pointer; color: #ffffff; display: none"
+              >
+                <strong>Advanced Options</strong>
+                <i
+                  class="fas fa-angle-right"
+                  style="transform: rotate(90deg); margin-left: 10px"
+                ></i>
+              </a>
+              <a
+                id="advancedOptionsButtomUp"
+                class="nav-link"
+                href="#"
+                style="cursor: pointer; color: #ffffff"
+              >
+                <strong>Advanced Options</strong>
+                <i
+                  class="fas fa-angle-right"
+                  style="transform: rotate(270deg); margin-left: 10px"
+                ></i>
+              </a>
+            </div>
+            <!-- buttom group-->
+            <div id="advancedOptionsButtomGroup">
+              <div
+                class="container-fluid d-flex"
+                style="
+                  margin-top: 10px;
+                  font-size: 13px;
+                  justify-content: space-between;
+                  align-items: center;
+                "
+              >
+                <!-- left -->
+                <div
+                  style="
+                    color: #ffffff;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                  "
+                >
+                  <strong style="margin-right: 30px"
+                    >Slippage<br />Tolerance</strong
+                  >
+                  <button
+                    type="button"
+                    class="btn btn-ghost-light"
+                    data-coreui-toggle="tooltip"
+                    data-coreui-html="true"
+                    data-coreui-placement="top"
+                    title="<b>If the price changes between the time your order is placed and confirmed it's called 'slippage'. Your swap will automatically cancel if slippage exceeds your 'max slippage' setting</b>"
+                  >
+                    <i class="fas fa-info-circle" style="font-size: 20px"></i>
+                  </button>
+                </div>
+                <!-- right -->
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                  "
+                >
+                  <button
+                    id="slippageButtom1"
+                    type="button"
+                    class="btn btn-sm btn-outline-info rounded-pill custom-advanced-options-button"
+                  >
+                    <div style="margin: auto 10px">2%</div>
+                  </button>
+                  <button
+                    id="slippageButtom2"
+                    type="button"
+                    class="btn btn-sm btn-outline-info rounded-pill custom-advanced-options-button active"
+                  >
+                    <div style="margin: auto 10px">3%</div>
+                  </button>
+                  <button
+                    id="slippageButtom3"
+                    type="button"
+                    class="btn btn-sm btn-outline-info rounded-pill custom-advanced-options-button"
+                  >
+                    <div style="margin: auto 10px">custom</div>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- other buttoms in card -->
             <button
               id="connectButtonInCard"
               type="button"
-              class="btn btn-info mt-4 rounded-pill"
+              class="btn btn-info mt-5 rounded-pill"
               style="width: 100%"
             >
               Connect wallet
@@ -287,7 +382,7 @@
               id="getQuotesButtonInCard"
               type="button"
               disabled
-              class="btn btn-info mt-4 rounded-pill"
+              class="btn btn-info mt-5 rounded-pill"
               style="width: 100%; display: none"
             >
               Get Quotes
