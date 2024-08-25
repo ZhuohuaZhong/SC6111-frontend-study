@@ -86,8 +86,10 @@
         <nav class="navbar custom-navbar navbar-expand-lg">
           <div class="container-fluid">
             <!-- brand (navbar right side) -->
-            <div style="margin: auto 20px">
-              <strong class="navbar-brand">Swap</strong>
+            <div style="margin: auto 30px">
+              <h3>
+                <strong>Swap</strong>
+              </h3>
             </div>
 
             <!-- navbar right side -->
@@ -105,7 +107,7 @@
               <!-- gas and remind button -->
               <button
                 type="button"
-                class="btn btn-ghost-secondary"
+                class="btn btn-ghost-light"
                 data-coreui-toggle="tooltip"
                 data-coreui-html="true"
                 data-coreui-placement="bottom"
@@ -117,7 +119,7 @@
               </button>
               <button
                 type="button"
-                class="btn btn-ghost-secondary position-relative"
+                class="btn btn-ghost-light position-relative"
                 data-coreui-toggle="tooltip"
                 data-coreui-html="true"
                 data-coreui-placement="bottom"
@@ -159,20 +161,85 @@
               MetaMask might be on the NTU Wi-Fi blacklist.<br />
               Please use mobile data, if there is an error.
             </div>
+
             <!-- account moudle -->
+            <h6 class="card-title" id="accountInfoTitle" style="display: none">
+              <strong> Account Info</strong>
+            </h6>
             <select
               id="accountInfo"
               class="form-select form-select-lg mb-3"
               aria-label=".form-select-lg example"
-              style="display: none"
+              style="
+                display: none;
+                border-color: #868c95;
+                background-color: #000000;
+              "
             ></select>
             <p id="balanceInfo" style="display: none">ETH balance:</p>
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+
+            <!-- network switch -->
+            <select
+              class="form-select form-select rounded-pill"
+              style="
+                height: 50px;
+                border-color: #868c95;
+                background-color: #26272b;
+              "
+            >
+              <option selected value="Ethereum">Ethereum</option>
+              <option value="EthereumSepolia">Ethereum Sepolia</option>
+              <option value="Polygon">Polygon</option>
+            </select>
+
+            <!-- swap moudle -->
+            <!-- swap from -->
+            <h6 class="card-title mt-4">
+              <strong> Swap from</strong>
+            </h6>
+            <div class="input-group">
+              <select
+                class="form-select form-select-lg"
+                style="
+                  height: 60px;
+                  max-width: 150px;
+                  background-color: #26272b;
+                "
+              >
+                <option selected value="WETH">WETH</option>
+                <option value="WBTC">WBTC</option>
+                <option value="USDT">USDT</option>
+                <option value="USDC">USDC</option>
+              </select>
+              <input
+                type="text"
+                class="form-control"
+                style="height: 60px; background-color: #26272b"
+              />
+            </div>
+            <!-- swap buttom -->
+            <div class="d-flex">
+              <button type="button" class="btn btn-ghost-light mt-2 ms-auto">
+                <i
+                  class="fas fa-exchange-alt"
+                  style="transform: rotate(90deg)"
+                ></i>
+              </button>
+            </div>
+
+            <!-- swap to -->
+            <h6 class="card-title">
+              <strong> Swap to</strong>
+            </h6>
+            <select
+              class="form-select form-select-lg mb-3"
+              style="height: 60px; background-color: #26272b"
+            >
+              <option value="WETH">WETH</option>
+              <option value="WBTC">WBTC</option>
+              <option selected value="USDT">USDT</option>
+              <option value="USDC">USDC</option>
+            </select>
           </div>
         </div>
       </div>

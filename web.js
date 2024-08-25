@@ -4,6 +4,7 @@ const disconnectButton = document.getElementById("disconnectButton");
 const accountDisplay = document.getElementById("account");
 const successToast = document.getElementById("successToast");
 const failToast = document.getElementById("failToast");
+const accountInfoTitle = document.getElementById("accountInfoTitle");
 const accountInfo = document.getElementById("accountInfo");
 const balanceInfo = document.getElementById("balanceInfo");
 const networkWarn = document.getElementById("networkWarn");
@@ -29,6 +30,8 @@ window.addEventListener("load", async () => {
 
 // show accout info module
 function showAccountInfo(account, balance) {
+  // account info title accountInfoTitle
+  accountInfoTitle.style.display = "block";
   // address info
   var option = document.createElement("option");
   option.value = "1";
