@@ -1,13 +1,19 @@
 // const var
+// for connection
 const connectButton = document.getElementById("connectButton");
 const disconnectButton = document.getElementById("disconnectButton");
-const accountDisplay = document.getElementById("account");
 const successToast = document.getElementById("successToast");
 const failToast = document.getElementById("failToast");
+// for account info
 const accountInfoTitle = document.getElementById("accountInfoTitle");
 const accountInfo = document.getElementById("accountInfo");
 const balanceInfo = document.getElementById("balanceInfo");
 const networkWarn = document.getElementById("networkWarn");
+// for swap
+const swapFromSelect = document.getElementById("swapFromSelect");
+const swapFromInput = document.getElementById("swapFromInput");
+const swapToSelect = document.getElementById("swapToSelect");
+const swapButtom = document.getElementById("swapButtom");
 
 // enable tooltip
 const tooltipTriggerList = document.querySelectorAll(
@@ -121,4 +127,15 @@ disconnectButton.addEventListener("click", () => {
   // change button
   disconnectButton.style.display = "none";
   connectButton.style.display = "block";
+});
+
+// swap buttom logic
+swapButtom.addEventListener("click", () => {
+  const swapFromValue = swapFromSelect.value;
+  const swapToValue = swapToSelect.value;
+
+  tmp = swapFromValue;
+  swapFromSelect.value = swapToValue;
+  swapToSelect.value = tmp;
+  swapFromInput.value = null;
 });

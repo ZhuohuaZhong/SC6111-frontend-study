@@ -199,6 +199,7 @@
             </h6>
             <div class="input-group">
               <select
+                id="swapFromSelect"
                 class="form-select form-select-lg"
                 style="
                   height: 60px;
@@ -212,14 +213,20 @@
                 <option value="USDC">USDC</option>
               </select>
               <input
+                id="swapFromInput"
                 type="text"
                 class="form-control"
+                placeholder="0"
                 style="height: 60px; background-color: #26272b"
               />
             </div>
             <!-- swap buttom -->
             <div class="d-flex">
-              <button type="button" class="btn btn-ghost-light mt-2 ms-auto">
+              <button
+                id="swapButtom"
+                type="button"
+                class="btn btn-ghost-light mt-2 ms-auto"
+              >
                 <i
                   class="fas fa-exchange-alt"
                   style="transform: rotate(90deg)"
@@ -232,6 +239,7 @@
               <strong> Swap to</strong>
             </h6>
             <select
+              id="swapToSelect"
               class="form-select form-select-lg mb-3"
               style="height: 60px; background-color: #26272b"
             >
