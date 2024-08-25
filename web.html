@@ -30,10 +30,13 @@
 "></script>
   </head>
 
-  <body>
-    <div class="d-flex custom-background">
+  <body class="custom-background">
+    <div class="d-flex">
       <!-- SIDEBAR -->
-      <div class="sidebar custom-sidebar border-end d-flex flex-column">
+      <div
+        class="sidebar custom-sidebar border-end d-flex flex-column"
+        style="position: fixed"
+      >
         <!-- sidebar header -->
         <div class="sidebar-header">
           <div style="margin: 20px auto">
@@ -107,7 +110,7 @@
       </div>
 
       <!-- NAVBAR -->
-      <div class="flex-grow-1">
+      <div class="flex-grow-1" style="margin-left: 200px">
         <nav class="navbar custom-navbar navbar-expand-lg">
           <div class="container-fluid">
             <!-- brand (navbar right side) -->
@@ -183,8 +186,10 @@
           <div class="card-body">
             <!-- network warn -->
             <div id="networkWarn" class="alert alert-warning" role="alert">
-              MetaMask might be on the NTU Wi-Fi blacklist.<br />
-              Please use mobile data, if there is an error.
+              ❗️MetaMask might be on the NTU Wi-Fi blacklist.<br />
+              Please use mobile data, if there is an error.<br /><br />
+              Available funtions:<br />
+              ✅ Connect to MetaMask<br />
             </div>
 
             <!-- account moudle -->
@@ -227,7 +232,7 @@
                 id="swapFromSelect"
                 class="form-select form-select-lg"
                 style="
-                  height: 60px;
+                  height: 50px;
                   max-width: 150px;
                   background-color: #26272b;
                 "
@@ -242,7 +247,7 @@
                 type="text"
                 class="form-control"
                 placeholder="0"
-                style="height: 60px; background-color: #26272b"
+                style="height: 50px; background-color: #26272b"
               />
             </div>
             <!-- swap buttom -->
@@ -266,7 +271,7 @@
             <select
               id="swapToSelect"
               class="form-select form-select-lg mb-3"
-              style="height: 60px; background-color: #26272b"
+              style="height: 50px; background-color: #26272b"
             >
               <option value="WETH">WETH</option>
               <option value="WBTC">WBTC</option>
