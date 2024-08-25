@@ -8,12 +8,12 @@ const accountInfo = document.getElementById("accountInfo");
 const balanceInfo = document.getElementById("balanceInfo");
 const networkWarn = document.getElementById("networkWarn");
 
-// enable CoreUI popover
-const popoverTriggerList = document.querySelectorAll(
-  '[data-coreui-toggle="popover"]'
+// enable tooltip
+const tooltipTriggerList = document.querySelectorAll(
+  '[data-coreui-toggle="tooltip"]'
 );
-const popoverList = [...popoverTriggerList].map(
-  (popoverTriggerEl) => new coreui.Popover(popoverTriggerEl)
+const tooltipList = [...tooltipTriggerList].map(
+  (tooltipTriggerEl) => new coreui.Tooltip(tooltipTriggerEl)
 );
 
 //  check if metamask installed when page is loaded

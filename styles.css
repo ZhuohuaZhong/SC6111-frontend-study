@@ -7,6 +7,13 @@
   color: #ffffff !important;
 }
 
+.custom-tooltip {
+  --cui-tooltip-color: #ffffff !important;
+  --cui-tooltip-bg: #26272b !important;
+  --cui-tooltip-padding-x: 20px !important;
+  --cui-tooltip-padding-y: 10px !important;
+}
+
 .custom-background {
   background-color: #141618 !important;
 }

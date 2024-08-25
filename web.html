@@ -103,19 +103,32 @@
               </form>
 
               <!-- gas and remind button -->
-              <button type="button" class="btn btn-ghost-secondary">
-                <i class="fas fa-gas-pump icon-spacing"></i
-                ><span class="badge text-bg-secondary">3</span>
-              </button>
               <button
                 type="button"
                 class="btn btn-ghost-secondary"
-                data-coreui-container="body"
-                data-coreui-toggle="popover"
+                data-coreui-toggle="tooltip"
+                data-coreui-html="true"
                 data-coreui-placement="bottom"
-                data-coreui-content="Bottom popover"
+                data-coreui-custom-class="custom-tooltip"
+                title="<b>Gas Price</b><br/>Fast 2.00 GWEI<br/>Avge 0.25 GWEI<br/>Safe 0.01 GWEI"
+              >
+                <i class="fas fa-gas-pump icon-spacing"></i
+                ><span class="badge text-bg-secondary">2</span>
+              </button>
+              <button
+                type="button"
+                class="btn btn-ghost-secondary position-relative"
+                data-coreui-toggle="tooltip"
+                data-coreui-html="true"
+                data-coreui-placement="bottom"
+                data-coreui-custom-class="custom-tooltip"
+                title="<b>Network Warning</b><br/>MetaMask might be on the NTU Wi-Fi blacklist.<br/>Please use mobile data, if there is an error."
               >
                 <i class="far fa-bell"></i>
+                <span
+                  class="position-absolute top-40 start-60 translate-middle p-1 bg-danger rounded-circle"
+                >
+                </span>
               </button>
 
               <!-- Wallet -->
