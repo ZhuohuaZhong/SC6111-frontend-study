@@ -4,6 +4,8 @@ const disconnectButton = document.getElementById("disconnectButton");
 const accountDisplay = document.getElementById("account");
 const successToast = document.getElementById("successToast");
 const failToast = document.getElementById("failToast");
+const accountInfo = document.getElementById("accountInfo");
+const balanceInfo = document.getElementById("balanceInfo");
 
 // enable CoreUI popover
 const popoverTriggerList = document.querySelectorAll(
@@ -24,6 +26,20 @@ window.addEventListener("load", async () => {
   }
 });
 
+// show accout info module
+function showAccountInfo(account, balance) {
+  // address info
+  var option = document.createElement("option");
+  option.value = "1";
+  option.text = account;
+  accountInfo.add(option);
+  accountInfo.style.display = "block";
+  // balance info
+  balanceInfo.innerText =
+    "ETH balance: " + web3.utils.fromWei(balance, "ether");
+  balanceInfo.style.display = "block";
+}
+
 // check metamask connected or not
 async function checkConnection() {
   web3 = window.web3;
@@ -37,6 +53,7 @@ async function checkConnection() {
     // get info
     var balance = await web3.eth.getBalance(accounts[0]);
     console.log("ETH balance:", web3.utils.fromWei(balance, "ether"));
+    showAccountInfo(accounts[0], balance);
   } else {
     // not connected
     console.log("MetaMask is not connected  when load");
@@ -64,6 +81,7 @@ connectButton.addEventListener("click", async () => {
     console.log("Connect account:", accounts[0]);
     var balance = await web3.eth.getBalance(accounts[0]);
     console.log("ETH balance:", web3.utils.fromWei(balance, "ether"));
+    showAccountInfo(accounts[0], balance);
   } catch (error) {
     // fail
     // show fail toast
