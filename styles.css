@@ -2,3 +2,28 @@
   margin-right: 8px;
   margin-left: 8px;
 }
+
+.custom-background {
+  background-color: #141618 !important;
+}
+
+.custom-sidebar {
+  max-width: 200px !important;
+  height: 100vh;
+  background-color: #25272a !important;
+}
+
+.custom-navbar {
+  margin: 2rem auto !important;
+  background-color: #141618 !important;
+}
+
+.custom-card {
+  width: 30rem;
+  margin: 4rem auto;
+  max-width: 800px;
+  padding: 20px;
+  border: none !important;
+  border-radius: 15px !important;
+  background-color: #26272b !important;
+}
