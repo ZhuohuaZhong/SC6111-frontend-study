@@ -6,6 +6,7 @@ const successToast = document.getElementById("successToast");
 const failToast = document.getElementById("failToast");
 const accountInfo = document.getElementById("accountInfo");
 const balanceInfo = document.getElementById("balanceInfo");
+const networkWarn = document.getElementById("networkWarn");
 
 // enable CoreUI popover
 const popoverTriggerList = document.querySelectorAll(
@@ -38,6 +39,8 @@ function showAccountInfo(account, balance) {
   balanceInfo.innerText =
     "ETH balance: " + web3.utils.fromWei(balance, "ether");
   balanceInfo.style.display = "block";
+  // hide network warn
+  networkWarn.style.display = "none";
 }
 
 // check metamask connected or not
