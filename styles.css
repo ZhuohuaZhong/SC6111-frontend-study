@@ -3,6 +3,10 @@
   margin-left: 8px;
 }
 
+.custom-toast {
+  color: #ffffff !important;
+}
+
 .custom-background {
   background-color: #141618 !important;
 }
