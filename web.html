@@ -203,8 +203,8 @@
               ❗️MetaMask might be on the NTU Wi-Fi blacklist.<br />
               Please use mobile data, if there is an error.<br /><br />
               Available funtions:<br />
-              ✅ Connect to MetaMask<br />
-              ✅ Change network in web<br />
+              ✅ Connect to MetaMask (show address, balance)<br />
+              ✅ Change network in web (select below)<br />
               ✅ Automatically add the unrecognized network
             </div>
 
@@ -268,12 +268,26 @@
                 style="height: 50px; background-color: #26272b"
               />
             </div>
+
+            <!-- Swap balance -->
+            <p
+              id="swapBalanceInfo"
+              style="
+                display: block;
+                font-size: 14px;
+                color: #bcc0c5;
+                margin-top: 5px;
+              "
+            >
+              Connect MetaMask to see balance
+            </p>
+
             <!-- swap buttom -->
             <div class="d-flex">
               <button
                 id="swapButtom"
                 type="button"
-                class="btn btn-ghost-light mt-2 ms-auto"
+                class="btn btn-ghost-light ms-auto"
               >
                 <i
                   class="fas fa-exchange-alt"

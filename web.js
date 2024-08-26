@@ -16,6 +16,7 @@ const swapFromSelect = document.getElementById("swapFromSelect");
 const swapFromInput = document.getElementById("swapFromInput");
 const swapToSelect = document.getElementById("swapToSelect");
 const swapButtom = document.getElementById("swapButtom");
+const swapBalanceInfo = document.getElementById("swapBalanceInfo");
 // advanced options
 const advancedOptionsButtomUp = document.getElementById(
   "advancedOptionsButtomUp"
@@ -116,6 +117,8 @@ function showAccountInfo(account, balance) {
   // balance info
   balanceInfo.innerText = "Balance: " + web3.utils.fromWei(balance, "ether");
   balanceInfo.style.display = "block";
+  swapBalanceInfo.innerText =
+    web3.utils.fromWei(balance, "ether") + " ETH available to swap";
 }
 
 function switchToConnectedLayout(account, balance) {
