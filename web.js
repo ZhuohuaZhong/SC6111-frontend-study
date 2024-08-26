@@ -114,8 +114,7 @@ function showAccountInfo(account, balance) {
   accountInfo.add(option);
   accountInfo.style.display = "block";
   // balance info
-  balanceInfo.innerText =
-    "ETH balance: " + web3.utils.fromWei(balance, "ether");
+  balanceInfo.innerText = "Balance: " + web3.utils.fromWei(balance, "ether");
   balanceInfo.style.display = "block";
 }
 
