@@ -125,7 +125,8 @@
                 style="cursor: pointer; margin-left: 30px; font-size: 12px"
               >
                 Git History:<br />
-                https://github.com/ZhuohuaZhong/SC6111-frontend-study/commits/main/
+                https://github.com/ZhuohuaZhong/<br />
+                SC6111-frontend-study/commits/main/
               </a>
             </div>
 
@@ -199,6 +200,8 @@
               Please use mobile data, if there is an error.<br /><br />
               Available funtions:<br />
               ✅ Connect to MetaMask<br />
+              ✅ Change network in web<br />
+              ✅ Automatically add the unrecognized network
             </div>
 
             <!-- account moudle -->
@@ -219,6 +222,7 @@
 
             <!-- network switch -->
             <select
+              id="networkSelect"
               class="form-select form-select rounded-pill"
               style="
                 height: 50px;
@@ -228,6 +232,7 @@
             >
               <option selected value="Ethereum">Ethereum</option>
               <option value="EthereumSepolia">Ethereum Sepolia</option>
+              <option value="OP">OP</option>
               <option value="Polygon">Polygon</option>
             </select>
 

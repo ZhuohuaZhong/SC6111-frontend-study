@@ -9,6 +9,8 @@ const accountInfoTitle = document.getElementById("accountInfoTitle");
 const accountInfo = document.getElementById("accountInfo");
 const balanceInfo = document.getElementById("balanceInfo");
 const networkWarn = document.getElementById("networkWarn");
+// forn etwork switch
+const networkSelect = document.getElementById("networkSelect");
 // for swap in card
 const swapFromSelect = document.getElementById("swapFromSelect");
 const swapFromInput = document.getElementById("swapFromInput");
@@ -39,6 +41,56 @@ const tooltipList = [...tooltipTriggerList].map(
   (tooltipTriggerEl) => new coreui.Tooltip(tooltipTriggerEl)
 );
 
+class Network {
+  constructor(chainId, chainName, nativeCurrency, rpcUrls, blockExplorerUrls) {
+    this.chainId = chainId;
+    this.chainName = chainName;
+    this.nativeCurrency = nativeCurrency;
+    this.rpcUrls = rpcUrls;
+    this.blockExplorerUrls = blockExplorerUrls;
+  }
+}
+
+class NativeCurrency {
+  constructor(name, symbol, decimals) {
+    this.name = name;
+    this.symbol = symbol;
+    this.decimals = decimals;
+  }
+}
+
+const Ethereum = new Network(
+  "0x1",
+  "Ethereum",
+  new NativeCurrency("ETH", "ETH", 18),
+  ["https://mainnet.infura.io/v3/"],
+  ["https://etherscan.io"]
+);
+
+const EthereumSepolia = new Network(
+  "0xaa36a7", // 11155111
+  "Ethereum Sepolia",
+  new NativeCurrency("ETH", "ETH", 18),
+  ["https://rpc.sepolia.dev"],
+  ["https://sepolia.etherscan.io/"]
+);
+
+const Polygon = new Network(
+  "0x89", // 137
+  "Polygon Mainnet",
+  new NativeCurrency("MATIC", "MATIC", 18),
+  ["https://polygon-rpc.com"],
+  ["https://polygonscan.com/"]
+);
+
+const OP = new Network(
+  "0xa", // 10
+  "OP Mainnet",
+  new NativeCurrency("ETH", "ETH", 18),
+  ["https://mainnet.optimism.io"],
+  ["https://optimistic.etherscan.io/"]
+);
+
 //  check if metamask installed when page is loaded
 window.addEventListener("load", async () => {
   if (typeof window.ethereum !== "undefined") {
@@ -58,6 +110,7 @@ function showAccountInfo(account, balance) {
   var option = document.createElement("option");
   option.value = "1";
   option.text = account;
+  accountInfo.innerHTML = ""; // clear current option
   accountInfo.add(option);
   accountInfo.style.display = "block";
   // balance info
@@ -166,6 +219,73 @@ function deleteAllCookies() {
     const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
     document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
   }
+}
+
+// switch network
+networkSelect.addEventListener("change", async () => {
+  const selectedNetwork = networkSelect.value;
+  if (selectedNetwork == "Ethereum") {
+    switchNetwork(Ethereum);
+  }
+  if (selectedNetwork == "EthereumSepolia") {
+    switchNetwork(EthereumSepolia);
+  }
+  if (selectedNetwork == "OP") {
+    switchNetwork(OP);
+  }
+  if (selectedNetwork == "Polygon") {
+    switchNetwork(Polygon);
+  }
+});
+
+function switchNetwork(Network) {
+  window.ethereum &&
+    window.ethereum
+      .request({
+        method: "wallet_switchEthereumChain",
+        params: [
+          {
+            chainId: Network.chainId,
+          },
+        ],
+      })
+      .catch((error) => {
+        addNetwork(Network);
+      });
+}
+
+function addNetwork(Network) {
+  window.ethereum.request({
+    method: "wallet_addEthereumChain",
+    params: [
+      {
+        chainId: Network.chainId,
+        chainName: Network.chainName,
+        nativeCurrency: {
+          name: Network.nativeCurrency.name,
+          symbol: Network.nativeCurrency.symbol,
+          decimals: Network.nativeCurrency.decimals,
+        },
+        rpcUrls: Network.rpcUrls,
+        blockExplorerUrls: Network.blockExplorerUrls,
+      },
+    ],
+  });
+}
+
+// listen on network change to update account and balance
+if (window.ethereum) {
+  window.ethereum.on("networkChanged", async function (networkId) {
+    console.log("Network changed to:", networkId);
+    // update account and balance
+    web3 = window.web3;
+    accounts = await web3.eth.getAccounts();
+    console.log("Connect account:", accounts[0]);
+    web3.eth.getBalance(accounts[0]).then((balance) => {
+      console.log("Balance:", web3.utils.fromWei(balance, "ether"));
+      switchToConnectedLayout(accounts[0], balance);
+    });
+  });
 }
 
 // swap buttom logic
